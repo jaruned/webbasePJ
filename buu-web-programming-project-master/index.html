@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contact List</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container" id="app">
+        <h2>New Contact</h2>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="contact-name-label">Name</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Contact name" id="contact-name-text" v-model="newContactName">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="contact-phone-label">Phone</span>
+            </div>
+            <input type="text" id="cotact-phone-text" class="form-control" aria-label="Contact phone number" v-model="newContactPhoneNumber">
+        </div>
+        <button class="btn btn-primary" v-on:click="addNewContact">Save Contact</button>
+        <div>
+            <span>&nbsp;</span>
+            <h2>List of Contacts</h2>
+            <ul class="list-group">
+                <li class="list-group-item" v-for="contact in contacts">{{ contact.name }} ({{ contact.phoneNumber }})</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/axios/dist/axios.min.js"></script>
+    <script src="node_modules/vue/dist/vue.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                contacts: [],
+                newContactName: '',
+                newContactPhoneNumber: ''
+            },
+            methods: {
+                addNewContact: function() {
+                    let newContact = { name: this.newContactName, phoneNumber: this.newContactPhoneNumber }
+                    axios.post('http://localhost:3000/contacts', newContact)
+                        .then((res) => {
+                            this.getContactList()
+                        })
+                        .catch((err) => {
+                            console.log(err)
+                        })
+
+                    this.newContactName = ''
+                    this.newContactPhoneNumber = ''
+                },
+                getContactList: function() {
+                    axios.get('http://localhost:3000/contacts')
+                    .then((res) => {
+                        this.contacts = res.data
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+                }
+            }
+        })
+
+        app.getContactList()
+    </script>
+</body>
+</html>
