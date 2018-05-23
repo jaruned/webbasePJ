@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 /// TODO: Develop GET /contacts
-
+'hello'
 
 
 /// TODO: Develop POST /contacts
