@@ -22,7 +22,7 @@ app.get('/contacts', (req,res) => {
 /// TODO: Develop POST /contacts
 app.post('/contacts', (req, res) => {
     let newContacts = req.body
-    contacts.pushs(newContact)
+    contacts.push(newContacts)
     res.status(201).send() 
 
 })
