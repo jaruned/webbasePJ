@@ -4,8 +4,21 @@ const cors = require('cors')
 
 
 
+
 /// TODO: Develop GET /contacts
-S
+const app = express()
+let contacts = [{
+    name: 'John',
+    phonenumber: '011-1111111'
+}]
+
+app.use(bodyParser.json())
+app.use(cors())
+
+app.get('/contacts', (req, res) => {
+    res.json(contacts)
+})
+
 
 /// TODO: Develop POST /contacts
 
