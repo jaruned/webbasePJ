@@ -15,15 +15,15 @@ app.use(cors())
 
 /// TODO: Develop GET /contacts
 app.get('/contacts', (req,res) => {
-    res.json(contact)
+    res.json(contacts)
 
     })
 
 /// TODO: Develop POST /contacts
 app.post('/contacts', (req, res) => {
     let newContacts = req.body
-    contacts.push(newContacts)
-    res.json(contact)
+    contacts.pushs(newContacts)
+    res.json(newContacts)
     res.status(201).send() 
 
 })
