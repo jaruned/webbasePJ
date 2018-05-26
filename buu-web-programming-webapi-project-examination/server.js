@@ -24,7 +24,7 @@ app.get('/contacts', (req, res) => {
 
 app.post('/contacts', (req, res) => {
     let newContact = req.body
-    contacts.push(newContacts)
+    contacts.pushs(newContact)
     res.status(201).send()
 })
 
