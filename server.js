@@ -15,7 +15,7 @@ app.use(cors())
 
 /// TODO: Develop GET /contacts
 app.get('/contacts', (req,res) => {
-    res.json(contacts)
+    res.json(contact)
 
     })
 
@@ -23,6 +23,7 @@ app.get('/contacts', (req,res) => {
 app.post('/contacts', (req, res) => {
     let newContacts = req.body
     contacts.push(newContacts)
+    res.json(contact)
     res.status(201).send() 
 
 })
