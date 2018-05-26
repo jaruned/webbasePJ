@@ -5,7 +5,7 @@ const cors = require('cors')
 const app = express()
 let contacts = [
     {
-         name : 'Jhon',
+         name : 'John',
          phoneNumber : '011-1111111'
     }
 ]
